@@ -12,7 +12,7 @@ public class Teste {
 		ABBint tree = new ABBint();
 		int[] valores = new int[]{ 20, 15, 10, 18, 17, 45, 47, 50, 57 };
 		for (int i : valores) {
-			tree.root = tree.inserir(tree.root, i);		
+			tree.root = tree.inserirAVL(tree.root, i);		
 		}
 	
 		/* System.out.println("Digite valor");

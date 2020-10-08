@@ -41,7 +41,8 @@ public class Start {
 	public static void insert() {
 		System.out.print("Qual valor deseja inserir?\n: ");
 		int dado = le.nextInt();
-		tree.root = tree.inserir(tree.root, dado);
+		tree.root = tree.inserirAVL(tree.root, dado);
+		tree.atualizaAlturas(tree.root);
 		System.out.println("Inserido " + dado + ".\n");
 	}
 	
