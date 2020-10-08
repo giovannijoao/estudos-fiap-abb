@@ -29,11 +29,10 @@ public class ABBint {
 		}
 		else {
 			p.dir = inserir(p.dir, info);
-			p.esq = inserir(p.esq, info);
 			if (p.dir.hDir > p.dir.hEsq) {
-				p.hDir = p.esq.hDir + 1;
+				p.hDir = p.dir.hDir + 1;
 			} else {
-				p.hDir = p.esq.hEsq + 1;
+				p.hDir = p.dir.hEsq + 1;
 			}
 		}
 		return p;
@@ -112,6 +111,26 @@ public class ABBint {
 			aux = aux.dir;
 		}
 		return aux.dado;
+	}
+	
+	public void posOrdem(ARVORE p) {
+		if (p != null) {
+			if (p.esq != null)
+				inOrdem(p.esq);
+			if (p.dir != null)
+				inOrdem(p.dir);
+			System.out.println("dado: " + p.dado);			
+		}
+	}
+	
+	public void mostraFB(ARVORE p) {
+		if (p != null) {
+			if (p.esq != null)
+				mostraFB(p.esq);
+			if (p.dir != null)
+				mostraFB(p.dir);
+			System.out.println("FB (nó: " + p.dado + "): " + (p.hDir - p.hEsq));			
+		}
 	}
 
 }

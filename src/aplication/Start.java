@@ -20,6 +20,7 @@ public class Start {
 			showOption(1, "Inserir valor");
 			showOption(2, "Apresentar em ordem");
 			showOption(3, "Consultar valor");
+			showOption(4, "Apresenta FB");
 			opt = le.nextInt();
 			System.out.println();
 			if (opt == 1) {
@@ -29,6 +30,8 @@ public class Start {
 				tree.inOrdem(tree.root);				
 			} else if (opt == 3) { 
 				consult();
+			} else if (opt == 4) {
+				tree.mostraFB(tree.root);
 			} else {
 				running = false;
 			}
