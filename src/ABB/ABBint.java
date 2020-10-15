@@ -98,6 +98,32 @@ public class ABBint {
 		}
 	}
 
+	public ARVORE atualizaAlturaBalanceamento(ARVORE p) {
+		/*
+		 * atualiza informação da altura de cada nó depois da remoção percorre a árvore
+		 * usando percurso pós-ordem para ajustar primeiro os nós folhas (profundidade
+		 * maior) e depois os níveis acima
+		 */
+		if (p != null) {
+			p.esq = atualizaAlturaBalanceamento(p.esq);
+			if (p.esq == null)
+				p.hEsq = 0;
+			else if (p.esq.hEsq > p.esq.hDir)
+				p.hEsq = p.esq.hEsq + 1;
+			else
+				p.hEsq = p.esq.hDir + 1;
+			p.dir = atualizaAlturaBalanceamento(p.dir);
+			if (p.dir == null)
+				p.hDir = 0;
+			else if (p.dir.hEsq > p.dir.hDir)
+				p.hDir = p.dir.hEsq + 1;
+			else
+				p.hDir = p.dir.hDir + 1;
+			p = balanceamento(p);
+		}
+		return p;
+	}
+
 	public ARVORE rotacaoEsquerda(ARVORE p) {
 		// faz rotação para esquerda em relação ao nó apontado por p
 		ARVORE q, temp;
@@ -213,6 +239,14 @@ public class ABBint {
 			if (p.dir != null)
 				mostraFB(p.dir);
 			System.out.println("FB (nó: " + p.dado + "): " + (p.hDir - p.hEsq));
+		}
+	}
+
+	public int alturaAVL(ARVORE p) {
+		if (p.hDir > p.hEsq) {
+			return p.hDir + 1;
+		} else {
+			return p.hEsq + 1;
 		}
 	}
 

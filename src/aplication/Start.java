@@ -21,6 +21,9 @@ public class Start {
 			showOption(2, "Apresentar em ordem");
 			showOption(3, "Consultar valor");
 			showOption(4, "Apresenta FB");
+			showOption(5, "Remover");
+			showOption(6, "Apresenta altura");
+			showOption(7, "Conta Nós");
 			opt = le.nextInt();
 			System.out.println();
 			if (opt == 1) {
@@ -32,6 +35,12 @@ public class Start {
 				consult();
 			} else if (opt == 4) {
 				tree.mostraFB(tree.root);
+			} else if(opt == 5) { 
+				remove();
+			} else if (opt == 6) {
+				showHeight();
+			} else if (opt == 7) {
+				System.out.println("Nós: " + tree.contaNos(tree.root, 0));
 			} else {
 				running = false;
 			}
@@ -54,6 +63,21 @@ public class Start {
 		} else {
 			System.out.println("Número não existe na base.");
 		}		
+	}
+	
+	public static void remove() {
+		System.out.print("Qual valor deseja remover?\n: ");
+		int dado = le.nextInt();
+		tree.root = tree.removerValor(tree.root, dado);
+		tree.atualizaAlturaBalanceamento(tree.root);
+		tree.atualizaAlturas(tree.root);
+		System.out.println("Removido " + dado + ".\n");		
+	}
+	
+	public static void showHeight() {
+		int h = 0;
+		if (tree.root != null) h = tree.alturaAVL(tree.root);
+		System.out.println("Altura: " + h);
 	}
 
 }
